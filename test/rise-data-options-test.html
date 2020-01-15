@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>rise-data-options test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/wct-mocha/wct-mocha.js"></script>
+
+    <script type="text/javascript">
+      RisePlayerConfiguration = {
+        isConfigured: () => true
+      };
+    </script>
+
+    <script type="module" src="../src/rise-data-options.js"></script>
+  </head>
+  <body>
+
+    <test-fixture id="StaticValueTestFixture">
+      <template>
+        <rise-data-options
+          options="english,spanish,french"
+          value="english"
+        >
+        </rise-data-options>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      suite('rise-data-options', () => {
+
+        test('setting "value" attribute on the element works', () => {
+          // Get instance of element from test fixture
+          const element = fixture('StaticValueTestFixture');
+          assert.equal(element.value, 'english');
+        });
+
+        test('updating "value" attribute on the element works', (done) => {
+          // Get instance of element from test fixture
+          const element = fixture('StaticValueTestFixture');
+
+          element.setAttribute('value', 'spanish');
+          assert.equal(element.value, 'spanish');
+
+          element.addEventListener('data-update', function (event) {
+            assert.equal(event.type, 'data-update');
+            assert.equal(event.detail.value, 'french');
+
+            done();
+          });
+
+          element.setAttribute('value', 'french');
+        });
+
+        test('updating "value" property on the element works', (done) => {
+          // Get instance of element from test fixture
+          const element = fixture('StaticValueTestFixture');
+
+          element['value'] = 'spanish';
+          assert.equal(element.value, 'spanish');
+
+          element.addEventListener('data-update', function (event) {
+            assert.equal(event.type, 'data-update');
+            assert.equal(event.detail.value, 'french');
+
+            done();
+          });
+
+          element['value'] = 'french';
+        });
+
+        test('"configured" event should be sent when "ready" is called', (done) => {
+          const element = fixture('StaticValueTestFixture');
+
+          element.addEventListener('configured', function (event) {
+            assert.equal(event.type, 'configured');
+            done();
+          });
+
+          //calling "ready" should trigger event
+          element.ready();
+        });
+
+      });
+    </script>
+
+  </body>
+</html>
