@@ -301,7 +301,7 @@ workflows:
               only:
                 - build/stable
       - test-e2e-electron:
-          displayId: CHANGE_THIS
+          displayId: QJ983V6JSXUN
           installerPath: /beta/
           name: test-e2e-electron-beta
           requires:
@@ -313,7 +313,7 @@ workflows:
                 - master
                 - /^e2e[/].*/
       - test-e2e-electron:
-          displayId: CHANGE_THIS
+          displayId: M2GT9KUE53QZ
           installerPath: /
           name: test-e2e-electron-stable
           requires:

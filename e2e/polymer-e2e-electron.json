@@ -1,5 +1,5 @@
 {
-  "entrypoint": "e2e/rise-text-electron.html",
+  "entrypoint": "e2e/rise-data-options-electron.html",
   "sources": [ "e2e/**/*" ],
   "extraDependencies": [
     "node_modules/@polymer/polymer/**",

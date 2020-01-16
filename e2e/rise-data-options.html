@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-      .text { 
+      .text {
         font-size: 72px;
         font-family: sans-serif;
       }
@@ -31,7 +31,7 @@
     </script>
     <script src="https://widgets.risevision.com/__STAGE__/common/config-test.min.js"></script>
     <script src="https://widgets.risevision.com/__STAGE__/common/common-template.min.js"></script>
-    <script src="https://widgets.risevision.com/staging/components/rise-text/__VERSION__/rise-text.js"></script>
+    <script src="https://widgets.risevision.com/staging/components/rise-data-options/__VERSION__/rise-data-options.js"></script>
     <script>
       if (document.domain.indexOf("localhost") === -1) {
         try {
@@ -47,26 +47,34 @@
     </style>
   </head>
   <body>
-    <rise-text value="Hello World!" class="text"></rise-text>
-    <br />
-    <rise-text value="Hello World!" class="text red"></rise-text>
-    <br />
-    <rise-text value="Hello World!" class="text green"></rise-text>
+    <rise-data-options id="rise-data-options-01"
+      options="spanish,english,french"
+      value="spanish"
+    >
+    </rise-data-options>
+
+    <h1 id="block">
+    </h1>
 
     <script>
       function configureComponents() {
         console.log('Rise components ready');
+
+        const optionsElement = document.getElementById( "rise-data-options-01" );
+        const block = document.getElementById( "block" );
+
+        optionsElement.addEventListener( "data-update", event => {
+          const value = event.detail.value;
+
+          var text = value;
+          for( i = 0; i < 20; i++ )
+            text += `${ value }`;
+
+          block.innerHTML = text;
+        } );
       }
 
       window.addEventListener( "rise-components-ready", configureComponents );
-
-      // Demonstrating how to handle no connection to local messaging via listening for event
-      // Note: the connection can also be checked via RisePlayerConfiguration.LocalMessaging.isConnected()
-      window.addEventListener( "rise-local-messaging-connection", event => {
-        if ( !event.detail.isConnected ) {
-          console.log( "no connection to local messaging");
-        }
-      } );
     </script>
     <script>
       RisePlayerConfiguration.configure();
