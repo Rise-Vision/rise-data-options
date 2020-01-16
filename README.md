@@ -34,7 +34,7 @@ This attribute holds a literal value, for example:
   </rise-data-options>
 ```
 
-If it's not set, the label for the component defaults to "Languages", which is applied via the [generate_blueprint.js](https://github.com/Rise-Vision/html-template-library/blob/master/generate_blueprint.js) file for a HTML Template build/deployment.
+If it's not set, the label for the component defaults to "Options", which is applied via the [generate_blueprint.js](https://github.com/Rise-Vision/html-template-library/blob/master/generate_blueprint.js) file for a HTML Template build/deployment.
 
 ### Attributes
 
@@ -95,7 +95,7 @@ Run the following command in Terminal: `polymer serve`.
 Now in your browser, navigate to:
 
 ```
-http://127.0.0.1:8081/components/rise-data-options/demo/src/rise-data-options-dev.html
+http://127.0.0.1:8081/components/rise-data-options/demo/src/rise-data-options.html
 ```
 
 ## Submitting Issues
