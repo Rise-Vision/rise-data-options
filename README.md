@@ -1,4 +1,4 @@
-# Text Web Component [![CircleCI](https://circleci.com/gh/Rise-Vision/rise-data-options/tree/master.svg?style=svg)](https://circleci.com/gh/Rise-Vision/rise-data-options/tree/master)
+# Data Options Toolbox Web Component [![CircleCI](https://circleci.com/gh/Rise-Vision/rise-data-options/tree/master.svg?style=svg)](https://circleci.com/gh/Rise-Vision/rise-data-options/tree/master)
 
 ## Introduction
 
@@ -6,6 +6,10 @@
 text values from which a user can choose. These values can represent languages,
 style names, or other arbitrary values that can be used to change the behavior
 of a template.
+
+## Usage
+
+The below illustrates simple usage of the component.
 
 #### Example
 
@@ -17,6 +21,9 @@ of a template.
   >
   </rise-data-options>
 ```
+
+This is not a visual component, so an event listener should be registered to
+process the data it provides. You can check the available events in the [events section](#events)
 
 ### Labels
 
@@ -45,6 +52,8 @@ This component receives the following list of attributes:
 - **label**: ( string / optional ): An optional label key for the text that will appear in the template editor. See 'Labels' section above.
 - **options**: ( string / required ): A comma separated string with the supported values. Attribute editor UX will be generated with these.
 
+This component does not support PUD.
+
 ### Events
 
 The component sends the following events:
@@ -57,6 +66,10 @@ The component sends the following events:
     console.log(event.detail.value); // prints new option value.
   });
 ```
+
+### Logging
+
+The component is a very simple one, and logs no events to BQ.
 
 ## Built With
 - [Polymer 3](https://www.polymer-project.org/)
@@ -98,6 +111,39 @@ Now in your browser, navigate to:
 http://127.0.0.1:8081/components/rise-data-options/demo/src/rise-data-options.html
 ```
 
+### Demo project
+
+A demo project showing how to implement a simple rise-data-options listener can be found in the `demo` folder.
+
+### Integration in a Template
+
+After creating the Template's structure in `html-template-library`, add a reference to the component in the `<head>` section of `template.html`:
+
+```
+<script src="https://widgets.risevision.com/stable/components/rise-data-options/1/rise-data-options.js"></script>
+```
+
+Add an instance of the component, as shown in the example:
+
+```
+  <rise-data-options
+    id="rise-data-options-01"
+    label="Languages"
+    options="english,spanish,french"
+    value="english"
+  >
+  </rise-data-options>
+```
+
+Interaction with the component using the JavaScript browser console is possible
+by manually running code like:
+
+```
+const dataOptions01 = document.getElementById( 'rise-data-options-01' );
+
+dataOptions01.setAttribute( 'value', 'spanish' ); // or 'french', or 'english'
+```
+
 ## Submitting Issues
 If you encounter problems or find defects we really want to hear about them. If you could take the time to add them as issues to this Repository it would be most appreciated. When reporting issues, please use the following format where applicable:
 
@@ -125,4 +171,4 @@ If you are looking for help with Rise Vision, please see [Help Center](https://h
 
 **Facilitator**
 
-[Stuart Lees](https://github.com/stulees "Stuart Lees")
+[Santiago Arriaga Noguez](https://github.com/santiagonoguez "Santiago Arriaga Noguez")
